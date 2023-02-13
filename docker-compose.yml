@@ -1,0 +1,13 @@
+version: "3.9"
+networks:
+  global:
+    external: true
+services:
+  web:
+    build: .
+    container_name: python-redis-test
+    hostname: python-redis-test
+    ports:
+      - "8000:5000"
+    networks:
+      - global
