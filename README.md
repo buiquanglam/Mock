@@ -1,1 +1,1 @@
-# Docker Compose test project 2
+# Docker Compose test project 3
