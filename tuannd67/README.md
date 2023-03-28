@@ -16,6 +16,14 @@
 ## TODO
 [] test backend terraform bằng s3
 
-
-
-
+## Additional Requirement
+Jenkins
+	Stage
+		terratest (validate, plan, apply, destroy)
+			test: region, variables, command
+			result: id
+		Study: terratest, go language
+	Stage
+		terraform plan
+		terraform apply
+		terraform destroy
