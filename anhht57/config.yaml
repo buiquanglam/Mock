@@ -1,0 +1,7 @@
+database:
+  host: localhost
+  username: host
+  password: pass
+  port: 3456
+  db_name: simple
+  debug: false
