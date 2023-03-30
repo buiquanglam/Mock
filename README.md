@@ -1,6 +1,7 @@
 # Mock
 Jenkins:
 Ansible: on Managed Node
+	Use dynamic inventory concepts of Ansible to retrieve the IP Address of the EC2 instance
 	3 Roles:
 	- Lauching AWS EC2 instances for master and worker node
 	- Configuring Kubernetes Master node
