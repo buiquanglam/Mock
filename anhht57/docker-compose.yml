@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  api:
+    image: obitanatp/repo
+    ports:
+      - "4444:5444"  
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: host
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "3456:3456"    
+  k6:
+    image: grafana/k6:latest 
+    ports:
+      - "6565:6565"
+    volumes:
+      - ./samples:/scripts  
