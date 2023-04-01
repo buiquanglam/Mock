@@ -1,0 +1,11 @@
+[win]
+thanhvtapp.ddns.net
+
+[win:vars]
+ansible_user=pysga1996@gmail.com
+ansible_password=vutatthanh96
+ansible_connection=winrm
+ansible_python_interpreter='C:\\Python311\\python.exe python3'
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+ansible_connection=ssh
+ansible_shell_type=cmd
