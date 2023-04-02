@@ -1,5 +1,20 @@
 pipeline {
-	agent any 
+	agent any
+	triggers {
+        GenericTrigger(
+             genericVariables: [
+                [key: 'ref', value: '$.ref']
+             ],
+             token: 'abc123',
+             regexpFilterText: '$ref',
+             regexpFilterExpression: '^refs/heads/(main)$',
+             printContributedVariables: true,
+             printPostContent: true,
+        )
+    }
+    environment {
+        MAIL_TO = 'vutatthanh.hl96@gmail.com'
+    }
 	stages {
         stage('SCM') {
             steps {
@@ -27,7 +42,7 @@ pipeline {
         }
         stage('Await Approval') {
             steps {
-                mail to: "pysga1996@gmail.com", subject: "APPROVAL REQUIRED FOR $JOB_NAME" , body: """Build $BUILD_NUMBER required an approval. Go to ${BUILD_URL}input for more info."""
+                mail to: "${MAIL_TO}", subject: "APPROVAL REQUIRED FOR $JOB_NAME" , body: """Build $BUILD_NUMBER required an approval. Go to ${BUILD_URL}input for more info."""
                 input 'Do you want to process deploy?'
             }
         }
@@ -59,11 +74,11 @@ pipeline {
 	post {
         success {
             echo 'Project build successfully!'
-            mail to: "pysga1996@gmail.com", subject: "BUILD $JOB_NAME SUCCESS" , body: """Build $BUILD_NUMBER has been executed successfully. Go to ${BUILD_URL}console for more info."""
+            mail to: "${MAIL_TO}", subject: "BUILD $JOB_NAME SUCCESS" , body: """Build $BUILD_NUMBER has been executed successfully. Go to ${BUILD_URL}console for more info."""
         }
         failure {
             echo 'Project build failed!'
-            mail to: "pysga1996@gmail.com", subject: "BUILD $JOB_NAME FAILED" , body: """Build $BUILD_NUMBER has been executed failed. Go to ${BUILD_URL}console for more info."""
+            mail to: "${MAIL_TO}", subject: "BUILD $JOB_NAME FAILED" , body: """Build $BUILD_NUMBER has been executed failed. Go to ${BUILD_URL}console for more info."""
         }
   }  
 }
