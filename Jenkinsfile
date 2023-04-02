@@ -16,11 +16,11 @@ pipeline {
         MAIL_TO = 'vutatthanh.hl96@gmail.com'
     }
 	stages {
-        stage('SCM') {
-            steps {
-            	git branch: 'main', url: 'https://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@github.com/thanh-vt/python-redis-web.git'
-            }
-        }
+//         stage('SCM') {
+//             steps {
+//             	git branch: 'main', url: 'https://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@github.com/thanh-vt/python-redis-web.git'
+//             }
+//         }
         stage('Scan Sonar') {
             environment {
                 scannerHome = tool name: 'thanhvt27-sonarqube-scanner'
