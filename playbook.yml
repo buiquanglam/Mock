@@ -2,15 +2,7 @@
   remote_user: ubuntu
   become: true
   tasks:
-    - name: Login DockerHub
-      win_shell: echo "{{DOCKER_PASSWORD}}" | docker login -u "{{DOCKER_USERNAME}}" --password-stdin
-    - name: Copy file
-      copy:
-        src: docker-compose.yml
-        dest: /home/ubuntu/
-    - name: Restart docker-compose
+    - name: Deploy helm chart
       win_shell: |
-          docker-compose stop
-          docker-compose rm -f
-          docker-compose pull
-          docker-compose up -d
+          helm repo update
+          helm upgrade my-thanhvt27-lab-k8s thanh-vt/thanhvt27-lab-k8s --install --version 0.1.4
