@@ -1,12 +1,20 @@
+import os
 import time
 
 import redis
 from flask import Flask
 
 application = Flask(__name__)
-cache = redis.Redis(host='redis-16709.c264.ap-south-1-1.ec2.cloud.redislabs.com', port=16709, db=0, password='PiXz0qWVgER188r9uHjDHh3rjvEx4XYf')
+
+if os.getenv('REDIS_MODE', 'STANDALONE') == 'CLUSTER':
+    cache = redis.cluster.RedisCluster(host=os.getenv('REDIS_HOST'), port=int(os.getenv('REDIS_PORT')))
+else:
+    cache = redis.Redis(host=os.getenv('REDIS_HOST'), port=int(os.getenv('REDIS_PORT')),
+                        db=int(os.getenv('REDIS_DB')), password=os.getenv('REDIS_PASSWORD'))
+
 
 def get_hit_count():
+    x = 5
     retries = 5
     while True:
         try:
@@ -16,6 +24,7 @@ def get_hit_count():
                 raise exc
             retries -= 1
             time.sleep(0.5)
+
 
 @application.route('/')
 def hello():

@@ -19,7 +19,7 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 retry(5) {
-                    timeout(time: 10, unit: 'SECONDS') {
+                    timeout(time: 5, unit: 'SECONDS') {
                         waitForQualityGate abortPipeline: true
                     }
                 }
@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Await Approval') {
             steps {
-                mail to: "pysga1996@gmail.com", subject: "APPROVAL REQUIRED FOR $JOB_NAME" , body: """Build $BUILD_NUMBER required an approval. Go to ${BUILD_URL}input/ for more info."""
+                mail to: "pysga1996@gmail.com", subject: "APPROVAL REQUIRED FOR $JOB_NAME" , body: """Build $BUILD_NUMBER required an approval. Go to ${BUILD_URL}input for more info."""
                 input 'Do you want to process deploy?'
             }
         }
@@ -55,12 +55,14 @@ pipeline {
 			}
         }
 	}
-	post{
+	post {
         success {
             echo 'Project build successfully!'
+            mail to: "pysga1996@gmail.com", subject: "BUILD $JOB_NAME SUCCESS" , body: """Build $BUILD_NUMBER has been executed successfully. Go to ${BUILD_URL}console for more info."""
         }
         failure {
             echo 'Project build failed!'
+            mail to: "pysga1996@gmail.com", subject: "BUILD $JOB_NAME FAILED" , body: """Build $BUILD_NUMBER has been executed failed. Go to ${BUILD_URL}console for more info."""
         }
   }  
 }

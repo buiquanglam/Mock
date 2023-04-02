@@ -1,0 +1,8 @@
+- hosts: win
+  remote_user: pysga1996@gmail.com
+  become: true
+  tasks:
+    - name: Update Helm
+      win_shell: |
+          helm repo update
+          helm upgrade my-thanhvt27-lab-k8s thanh-vt/thanhvt27-lab-k8s --install --version 0.1.4
