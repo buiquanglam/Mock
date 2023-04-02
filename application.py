@@ -1,10 +1,13 @@
 import os
 import time
+from flask_wtf.csrf import CSRFProtect
 
 import redis
 from flask import Flask
 
 application = Flask(__name__)
+csrf = CSRFProtect()
+csrf.init_app(application)  # Compliant
 
 if os.getenv('REDIS_MODE', 'STANDALONE') == 'CLUSTER':
     cache = redis.cluster.RedisCluster(host=os.getenv('REDIS_HOST'), port=int(os.getenv('REDIS_PORT')))
@@ -14,7 +17,6 @@ else:
 
 
 def get_hit_count():
-    x = 5
     retries = 5
     while True:
         try:
@@ -29,4 +31,4 @@ def get_hit_count():
 @application.route('/')
 def hello():
     count = get_hit_count()
-    return 'Hello World! I have been seen {} times.\n'.format(count)
+    return 'Hello World 1! I have been seen {} times.\n'.format(count)
