@@ -2,6 +2,7 @@
   remote_user: pysga1996@gmail.com
   become: true
   become_method: runas
+  become_user: pysga1996@gmail.com
   tasks:
     - name: Update Helm
       win_shell: |
