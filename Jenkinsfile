@@ -42,7 +42,7 @@ pipeline {
 			steps {
 				withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
 					ansiblePlaybook(
-					    installation: 'thanhvt27-ansible'
+					    installation: 'thanhvt27-ansible',
 						credentialsId: 'win-server',
 						inventory: 'inventory', 
 						playbook: 'playbook.yml',
