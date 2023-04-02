@@ -18,7 +18,6 @@ pipeline {
         }
         stage('Quality Gate') {
             steps {
-
                 retry(5) {
                     timeout(time: 5, unit: 'SECONDS') {
                         waitForQualityGate abortPipeline: true
@@ -43,7 +42,7 @@ pipeline {
 			steps {
 				withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
 					ansiblePlaybook(
-						credentialsId: 'server-app', 
+						credentialsId: 'win-server',
 						inventory: 'inventory', 
 						playbook: 'playbook.yml',
 						become: 'yes',
