@@ -3,9 +3,11 @@ import time
 from flask_wtf.csrf import CSRFProtect
 
 import redis
-from flask import Flask
+from flask import Flask, render_template
 
-application = Flask(__name__)
+application = Flask(__name__, static_url_path='',
+                    static_folder='web/static',
+                    template_folder='web/templates',)
 csrf = CSRFProtect()
 csrf.init_app(application)  # Compliant
 
@@ -31,4 +33,5 @@ def get_hit_count():
 @application.route('/')
 def hello():
     count = get_hit_count()
-    return 'Hello World 1! I have been seen {} times.\n'.format(count)
+    # return 'Hello World 1! I have been seen {} times.\n'.format(count)
+    return render_template('index.html', count=count)
