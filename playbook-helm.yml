@@ -1,6 +1,7 @@
 - hosts: win
   remote_user: pysga1996@gmail.com
   become: true
+  become_method: runas
   tasks:
     - name: Update Helm
       win_shell: |
