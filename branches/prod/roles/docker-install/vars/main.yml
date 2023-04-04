@@ -1,0 +1,3 @@
+remote_user: ubuntu
+url_docker_official_gpgKey: https://download.docker.com/linux/ubuntu/gpg
+url_stable_repository: https://download.docker.com/linux/ubuntu

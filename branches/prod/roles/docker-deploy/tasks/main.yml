@@ -1,0 +1,17 @@
+---
+- name: Copy docker-compose.yaml file
+  copy:
+    src: docker-compose.yaml
+    dest: /home/ubuntu/
+  tags:
+    - docker
+
+- name: Restart docker-compose
+  shell: |
+      docker-compose stop
+      docker-compose rm -f
+      docker-compose pull
+      docker-compose up -d
+  tags:
+    - docker
+...

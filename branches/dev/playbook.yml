@@ -1,0 +1,9 @@
+---
+- name: "Installing docker/docker-compose and deploy app in dev environment"
+  # gather_facts: false
+  hosts: dev
+  become: yes
+  roles:
+    - docker-install
+    - docker-deploy
+...

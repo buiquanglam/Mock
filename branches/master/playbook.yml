@@ -1,0 +1,9 @@
+---
+- name: "Installing docker/docker-compose and deploy app in master environment"
+  # gather_facts: false
+  hosts: master
+  become: yes
+  roles:
+    - docker-install
+    - docker-deploy
+...

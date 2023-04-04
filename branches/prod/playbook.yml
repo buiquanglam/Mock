@@ -1,0 +1,9 @@
+---
+- name: "Installing docker/docker-compose and deploy app in prod environment"
+  # gather_facts: false
+  hosts: prod
+  become: yes
+  roles:
+    - docker-install
+    - docker-deploy
+...

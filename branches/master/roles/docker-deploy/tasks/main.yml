@@ -1,0 +1,27 @@
+---
+- name: Login DockerHub
+  shell: |
+      apt update && apt-get update
+      apt install dbus-x11 -y
+      apt install gnome-keyring -y
+      apt install gnupg2 pass -y
+      echo "{{DOCKER_PASSWORD}}" | docker login --username "{{DOCKER_USERNAME}}" --password-stdin
+  tags:
+    - docker
+
+- name: Copy docker-compose.yaml file
+  copy:
+    src: docker-compose.yaml
+    dest: /home/ubuntu/
+  tags:
+    - docker
+
+- name: Restart docker-compose
+  shell: |
+      docker-compose stop
+      docker-compose rm -f
+      docker-compose pull
+      docker-compose up -d
+  tags:
+    - docker
+...

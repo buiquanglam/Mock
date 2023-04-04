@@ -1,0 +1,67 @@
+---
+- name: Update all packages to the latest version for Node1
+  remote_user: "{{ remote_user }}"
+  apt:
+    update_cache: yes
+  tags:
+    - general
+
+# Install Docker and Docker compose
+- name: Install docker packages
+  remote_user: "{{ remote_user }}"
+  apt:
+    name: ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
+    state: present
+    update_cache: yes
+  tags:
+    - docker
+
+- name: Add Docker official GPG key
+  remote_user: "{{ remote_user }}"
+  apt_key:
+    url: "{{ url_docker_official_gpgKey }}"
+    state: present
+  tags:
+    - docker
+
+- name: Set up the stable repository
+  remote_user: "{{ remote_user }}"
+  apt_repository:
+    repo: "deb [arch=amd64] {{ url_stable_repository }} {{ ansible_distribution_release }} stable"
+    state: present
+    update_cache: yes
+  tags:
+    - docker
+
+- name: Update apt packages
+  remote_user: "{{ remote_user }}"
+  apt:
+    update_cache: yes
+  tags:
+    - docker
+
+- name: Install docker
+  remote_user: "{{ remote_user }}"
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: latest
+    update_cache: yes
+  notify:
+    - start docker
+  tags:
+    - docker
+
+- name: Install docker-compose using apt
+  remote_user: "{{ remote_user }}"
+  apt:
+    name: docker-compose
+    state: present
+    update_cache: yes
+  notify:
+    - start docker-compose
+  tags:
+    - docker
+...
