@@ -1,0 +1,26 @@
+---
+- name: Install nginx latest version
+  apt:
+    name: nginx
+    state: present
+
+- name: Remove default nginx config
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Setup nginx service
+  template:
+    src: nginx.service.j2
+    dest: /lib/systemd/system/nginx.service
+
+- name: Render nginx config
+  template:
+    src: mysite.conf.j2
+    dest: /etc/nginx/sites-enabled/mysite.conf
+
+- name: Restart nginx
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: nginx.service

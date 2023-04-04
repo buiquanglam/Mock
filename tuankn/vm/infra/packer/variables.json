@@ -1,0 +1,16 @@
+{
+    "aws_ami_des": "Canonical, Ubuntu, 20.04 LTS*",
+    "aws_ami_owner": "541253215789",
+    "project_name": "packer-tuankn",
+    "ansible_dir_path": "../..",
+    "aws_instance_type": "t3.micro",
+    "aws_private_key": "./keys/packer_id_rsa.pem",
+    "aws_public_key": "packer-key",
+    "aws_security_group_id": "sg-0687b576545993080",
+    "aws_region_name": "eu-west-2",
+    "aws_remote_user": "ubuntu",
+    "aws_subnet_id": "subnet-0f0d340717525d1fc",
+    "aws_volume_size": "20",
+    "aws_volume_type": "gp2",
+    "aws_vpc_id": "vpc-0a82ae182405dc3b3"
+}
