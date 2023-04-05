@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   nginx-app:
-    image: mnikhoa/nginx:latest
+    image: mnikhoa/nginx-dev:latest
     container_name: nginx_app_container
     ports:
       - "80:80"

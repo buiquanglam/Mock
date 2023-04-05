@@ -1,8 +1,24 @@
 ---
-- name: start docker
+- name: start docker-ce
   remote_user: "{{ remote_user }}"
   service:
-    name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
+    name: docker-ce
+    state: started
+  tags:
+    - docker
+
+- name: start docker-ce-cli
+  remote_user: "{{ remote_user }}"
+  service:
+    name: docker-ce-cli
+    state: started
+  tags:
+    - docker
+
+- name: start containerd.io
+  remote_user: "{{ remote_user }}"
+  service:
+    name: containerd.io
     state: started
   tags:
     - docker

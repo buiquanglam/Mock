@@ -68,7 +68,6 @@ resource "aws_instance" "khoamd_ec2_server" {
   tags = {
     "Owner" = local.owner
     "Name"  = "${local.owner}-jenkins-server-${local.suffixed}-tags"
-
   }
 
   provisioner "file" {

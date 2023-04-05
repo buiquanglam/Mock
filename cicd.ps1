@@ -182,7 +182,7 @@ function GitApply {
     git remote add origin $origin
   }
 
-  git branch --show-current > ../default-gitbranch
+  git branch --show-current > ../../default-gitbranch
   set-location ../../
   write-output "Git apply done"
 
@@ -198,7 +198,9 @@ function GitMaster {
     write-warning 'Changing to Master branch...'
   } else {git init}
   $currentGitLog = git log -- .\cicd.ps1
-  if ($null -eq $currentGitLog) { continue } else {
+  if ($null -eq $currentGitLog) {
+    write-warning 'You are in Master branch...'
+  } else {
     $defaultGitBranch = get-content ./default-gitbranch
     git checkout $defaultGitBranch
   }
@@ -268,7 +270,7 @@ function GitPush {
   write-output "Push source code to GitHub repository done"
 
   invoke-command ${function:GitMaster}
-  write-warning 'You have push source code and switch back to Master branch'
+  write-warning 'You have pushed source code and switched back to Master branch'
 
   # Save log to ./current-gitlog file
   set-content -path './current-gitlog' -value $null

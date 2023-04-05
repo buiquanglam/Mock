@@ -50,7 +50,9 @@
     state: latest
     update_cache: yes
   notify:
-    - start docker
+    - start docker-ce
+    - start docker-ce-cli
+    - start containerd.io
   tags:
     - docker
 

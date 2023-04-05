@@ -65,7 +65,6 @@ resource "aws_instance" "khoamd_ec2_dev" {
   tags = {
     "Owner" = local.owner
     "Name"  = "${local.owner}-dev-${local.suffixed}-tags"
-
   }
 
   provisioner "file" {
