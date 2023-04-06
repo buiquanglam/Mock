@@ -20,6 +20,18 @@ locals {
   profile                  = "khoamd"
   region                   = "us-east-1"
   shared_credentials_files = ["~/.aws/credentials"]
+  var_mark                 = "$"
+  DOCKER_USERNAME          = "{DOCKER_USERNAME}"
+  DOCKER_PASSWORD          = "{DOCKER_PASSWORD}"
+  DOCKER_USERNAME_PLAIN    = "DOCKER_USERNAME"
+  DOCKER_PASSWORD_PLAIN    = "DOCKER_PASSWORD"
+  GIT_BRANCH               = "{GIT_BRANCH.tokenize('/').pop()}"
+  GIT_COMMIT               = "{GIT_COMMIT.substring(0,7)}"
+  DOCKER_TAG               = "{DOCKER_TAG}"
+  DOCKER_IMAGE_DEV         = "{DOCKER_IMAGE_DEV}"
+  DOCKER_IMAGE_MASTER      = "{DOCKER_IMAGE_MASTER}"
+  env                      = "env"
+  BRANCH_NAME              = "BRANCH_NAME"
 
   tags = {
     "Owner" = local.owner
@@ -112,6 +124,19 @@ resource "null_resource" "null_resource_all" {
       userDev           = module.ec2_dev.dev_host_os,
       identityfileDev   = pathexpand("${module.ec2_dev.dev_private_key_directory}/${module.ec2_dev.dev_owner}-${module.ec2_dev.dev_suffixed}.pem"),
       keygenFileNameDev = "${module.ec2_dev.dev_owner}-${module.ec2_dev.dev_suffixed}.pem"
+
+      DOCKER_USERNAME       = "${local.var_mark}${local.DOCKER_USERNAME}"
+      DOCKER_PASSWORD       = "${local.var_mark}${local.DOCKER_PASSWORD}"
+      DOCKER_USERNAME_PLAIN = "${local.var_mark}${local.DOCKER_USERNAME_PLAIN}"
+      DOCKER_PASSWORD_PLAIN = "${local.var_mark}${local.DOCKER_PASSWORD_PLAIN}"
+      GIT_BRANCH            = "${local.var_mark}${local.GIT_BRANCH}"
+      GIT_COMMIT            = "${local.var_mark}${local.GIT_COMMIT}"
+      DOCKER_TAG            = "${local.var_mark}${local.DOCKER_TAG}"
+      DOCKER_IMAGE_DEV      = "${local.var_mark}${local.DOCKER_IMAGE_DEV}"
+      DOCKER_IMAGE_MASTER   = "${local.var_mark}${local.DOCKER_IMAGE_MASTER}"
+      env                   = "${local.env}"
+      env_BRANCH_NAME       = "${local.env}.${local.BRANCH_NAME}"
+      env_BRANCH_NAME_PLAIN = "${local.var_mark}{${local.env}.${local.BRANCH_NAME}}"
     })
     interpreter = ["Powershell", "-Command"]
     # interpreter = ["bash", "-c"]

@@ -24,4 +24,4 @@ scrape_configs:
   - job_name: 'jenkins'
     metrics_path: /prometheus/
     static_configs:
-    - targets: ['54.242.175.174:8080']
+    - targets: ['52.90.219.196:8080']

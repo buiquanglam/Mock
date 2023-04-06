@@ -50,9 +50,7 @@
     state: latest
     update_cache: yes
   notify:
-    - start docker-ce
-    - start docker-ce-cli
-    - start containerd.io
+    - start docker
   tags:
     - docker
 
@@ -62,8 +60,8 @@
     name: docker-compose
     state: present
     update_cache: yes
-  notify:
-    - start docker-compose
+  # notify:
+  #   - start docker-compose
   tags:
     - docker
 ...

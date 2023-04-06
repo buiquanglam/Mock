@@ -18,7 +18,7 @@ pipeline {
       // }
       steps {
         script {
-          if (env.BRANCH_NAME == 'prod') {
+          if (${env.BRANCH_NAME} == 'prod') {
             dir ('branches/prod/') {
               withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                 ansiblePlaybook(
@@ -33,7 +33,7 @@ pipeline {
                 )
               }
             }
-          } else {sh "echo 'This is ${env.BRANCH_NAME} branch'"}
+          } else {sh "echo 'This is env.BRANCH_NAME branch'"}
         }
       }
     }
@@ -51,9 +51,9 @@ pipeline {
       }
       steps {
         script {
-          if (env.BRANCH_NAME == 'dev') {
+          if (${env.BRANCH_NAME} == 'dev') {
             dir ('branches/dev/') {
-              // sh "cd branches/master/"
+              // sh "cd branches/dev/"
               sh '''
                 docker build -t ${DOCKER_IMAGE_DEV}:${DOCKER_TAG} . 
                 docker tag ${DOCKER_IMAGE_DEV}:${DOCKER_TAG} ${DOCKER_IMAGE_DEV}:latest
@@ -71,7 +71,7 @@ pipeline {
               sh "docker image rm ${DOCKER_IMAGE_DEV}:latest"
               // sh "cd ../../"
             }
-          } else {sh "echo 'This is ${env.BRANCH_NAME} branch'"}
+          } else {sh "echo 'This is env.BRANCH_NAME branch'"}
         }
       }
     }
@@ -88,7 +88,7 @@ pipeline {
       // }
       steps {
         script {
-          if (env.BRANCH_NAME == 'dev') {
+          if (${env.BRANCH_NAME} == 'dev') {
             dir ('branches/dev/') {
               withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                 ansiblePlaybook(
@@ -103,7 +103,7 @@ pipeline {
                 )
               }
             }
-          } else {sh "echo 'This is ${env.BRANCH_NAME} branch'"}
+          } else {sh "echo 'This is env.BRANCH_NAME branch'"}
         }
       }
     }
@@ -121,7 +121,7 @@ pipeline {
       }
       steps {
         script {
-          if (env.BRANCH_NAME == 'master') {
+          if (${env.BRANCH_NAME} == 'master') {
             dir ('branches/master/') {
               // sh "cd branches/master/"
               sh '''
@@ -141,7 +141,7 @@ pipeline {
               sh "docker image rm ${DOCKER_IMAGE_MASTER}:latest"
               // sh "cd ../../"
             }
-          } else {sh "echo 'This is ${env.BRANCH_NAME} branch'"}
+          } else {sh "echo 'This is env.BRANCH_NAME branch'"}
         }
       }
     }
@@ -158,7 +158,7 @@ pipeline {
       // }
       steps {
         script {
-          if (env.BRANCH_NAME == 'master') {
+          if (${env.BRANCH_NAME} == 'master') {
             dir ('branches/master/') {
               withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                 ansiblePlaybook(
@@ -173,7 +173,23 @@ pipeline {
                 )
               }
             }
-          } else {sh "echo 'This is ${env.BRANCH_NAME} branch'"}
+          } else {sh "echo 'This is env.BRANCH_NAME branch'"}
+        }
+      }
+    }
+
+    stage ("SSH to Prod Node") {
+      options {
+        timeout(time: 5, unit: 'MINUTES')
+      }
+      steps {
+        script {
+          if (${env.BRANCH_NAME} == 'prod') {
+            sshagent (credentials: ['private-key']) {
+              sh "ssh -o StrictHostKeyChecking=no -l ubuntu 52.23.252.175 'touch test-ssh'"
+              sh "ssh -o StrictHostKeyChecking=no -l ubuntu 52.23.252.175 'echo abcd >> test-ssh'"
+            }
+          } else {sh "echo 'Nothing will be happening here'"}
         }
       }
     }

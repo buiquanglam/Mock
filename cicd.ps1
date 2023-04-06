@@ -14,6 +14,10 @@ function Apply {
   set-content -path './prometheus.yml' -value $null
   write-output 'Creating prometheus.yml file...'
 
+  set-content -path './Jenkinsfile' -value $null
+  # get-content -path './Jenkinsfile.tpl' -raw | add-content -path .\Jenkinsfile
+  write-output 'Creating Jenkinsfile.tpl file...'
+
   if (test-path -path '~/.ssh/khoamd-terraform.pem') {
     write-output 'keypair.pem file has been created'
   } else {

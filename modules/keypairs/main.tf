@@ -1,18 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "4.61.0"
-    }
-  }
-}
-
-provider "aws" {
-  profile                  = local.profile
-  region                   = local.region
-  shared_credentials_files = local.shared_credentials_files
-}
-
 locals {
   owner                     = "khoamd"
   profile                   = "khoamd"

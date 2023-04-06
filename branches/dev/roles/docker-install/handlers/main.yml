@@ -1,33 +1,19 @@
 ---
-- name: start docker-ce
+- name: start docker
   remote_user: "{{ remote_user }}"
   service:
-    name: docker-ce
+    name: docker
     state: started
+  become: true
   tags:
     - docker
 
-- name: start docker-ce-cli
-  remote_user: "{{ remote_user }}"
-  service:
-    name: docker-ce-cli
-    state: started
-  tags:
-    - docker
-
-- name: start containerd.io
-  remote_user: "{{ remote_user }}"
-  service:
-    name: containerd.io
-    state: started
-  tags:
-    - docker
-
-- name: start docker-compose
-  remote_user: "{{ remote_user }}"
-  service:
-    name: docker-compose
-    state: started
-  tags:
-    - docker
+# - name: start docker-compose
+#   remote_user: "{{ remote_user }}"
+#   service:
+#     name: docker-compose
+#     state: started
+#   become: true
+#   tags:
+#     - docker
 ...
