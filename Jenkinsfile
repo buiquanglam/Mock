@@ -1,5 +1,9 @@
 pipeline {
 	agent any
+	environment {
+        DATE = new Date().format('yy.M')
+        TAG = "${DATE}.${BUILD_NUMBER}"
+    }
 	triggers {
         GenericTrigger(
              genericVariables: [
@@ -64,7 +68,8 @@ pipeline {
 						become: 'yes',
 						extraVars: [
 							DOCKER_USERNAME: "${DOCKER_USERNAME}",
-							DOCKER_PASSWORD: "${DOCKER_PASSWORD}"
+							DOCKER_PASSWORD: "${DOCKER_PASSWORD}",
+							APP_VER: "${TAG}"
 						]
 					)
 				}	

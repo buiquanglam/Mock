@@ -7,4 +7,4 @@
     - name: Deploy
       win_shell: |
           helm repo update
-          helm upgrade thanhvt27-mock thanh-vt/thanhvt27-lab-k8s --install --version 0.1.4
+          helm upgrade thanhvt27-mock thanh-vt/thanhvt27-lab-k8s --install --version 0.1.4 --set podAnnotations.version="{{APP_VER}}"
