@@ -6,4 +6,6 @@
   tasks:
     - name: Deploy
       win_shell: |
+          helm repo update
+          helm upgrade thanhvt27-mock thanh-vt/thanhvt27-lab-k8s --install --version 0.1.4
           kubectl rollout restart deployment/thanhvt27-web-lab-k8s
