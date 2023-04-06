@@ -135,8 +135,8 @@ resource "null_resource" "null_resource_all" {
       DOCKER_IMAGE_DEV      = "${local.var_mark}${local.DOCKER_IMAGE_DEV}"
       DOCKER_IMAGE_MASTER   = "${local.var_mark}${local.DOCKER_IMAGE_MASTER}"
       env                   = "${local.env}"
-      env_BRANCH_NAME       = "${local.env}.${local.BRANCH_NAME}"
-      env_BRANCH_NAME_PLAIN = "${local.var_mark}{${local.env}.${local.BRANCH_NAME}}"
+      env_BRANCH_NAME       = "${local.var_mark}{${local.env}.${local.BRANCH_NAME}}"
+      env_BRANCH_NAME_PLAIN = "${local.env}.${local.BRANCH_NAME}"
     })
     interpreter = ["Powershell", "-Command"]
     # interpreter = ["bash", "-c"]

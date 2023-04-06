@@ -1,8 +1,8 @@
 [server]
-server ansible_host=52.90.219.196 ansible_connection=ssh ansible_port=22 ansible_user=ubuntu ansible_python_interpreter='/usr/bin/env python3' ansible_ssh_extra_args='-o StrictHostKeyChecking=no' become_method=sudo
+server ansible_host=50.17.172.152 ansible_connection=ssh ansible_port=22 ansible_user=ubuntu ansible_python_interpreter='/usr/bin/env python3' ansible_ssh_extra_args='-o StrictHostKeyChecking=no' become_method=sudo
 
 [prod]
-prod ansible_host=52.23.252.175 ansible_connection=ssh ansible_port=22 ansible_user=ubuntu ansible_python_interpreter='/usr/bin/env python3' ansible_ssh_extra_args='-o StrictHostKeyChecking=no' become_method=sudo
+prod ansible_host=3.86.162.104 ansible_connection=ssh ansible_port=22 ansible_user=ubuntu ansible_python_interpreter='/usr/bin/env python3' ansible_ssh_extra_args='-o StrictHostKeyChecking=no' become_method=sudo
 
 [allserver:children]
 server
