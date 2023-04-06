@@ -64,7 +64,7 @@ pipeline {
                             remoteDirectory: '/playbooks',
                             cleanRemote: false,
                             execCommand: 'cd playbooks/ && ansible-playbook download-deploy.yaml -i hosts', 
-                            execTimeout: 120000, 
+                            execTimeout: 120000 
                         )
                     ], 
                     usePromotionTimestamp: false, 
