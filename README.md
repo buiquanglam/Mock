@@ -1,3 +1,3 @@
-# Docker Compose test project 3
+# Mock Project
 
 test webhook 2
