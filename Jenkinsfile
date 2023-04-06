@@ -12,7 +12,7 @@ pipeline {
              printPostContent: true,
         )
     }
-    	environment {
+    environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
         MAIL_TO = 'vutatthanh.hl96@gmail.com'
