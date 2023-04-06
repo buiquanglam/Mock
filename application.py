@@ -33,5 +33,4 @@ def get_hit_count():
 @application.route('/')
 def hello():
     count = get_hit_count()
-    x = 5
     return render_template('index.html', count=count)
