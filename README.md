@@ -68,22 +68,22 @@ apply git-apply confirm git-master confirm git-push confirm git-dev confirm git-
 > ***NOTE:***  
 
 > *- Each action in the sequence will have to be seperated by `"space"`, or it will be appearing a warning*  
-> *- Right after the action `"git-push"` is performed, you're gonna be switching to `"master branch"` automatically. So what ever changes you have pushed to otther branches, push it to `"master branch"` too.*  
+> *- Right after the action `"git-push"` is performed, you're gonna be switching to `"master branch"` automatically. So what ever changes you have pushed to other branches, push it to `"master branch"` too.*  
 > *- Right after the first `"confirm"` action, let's do the necessary configuration for all services such as Jenkins (installing plugins, creating credentials, system configuration, creating multi-branch job, etc.) and Prometheus, Grafana... The `"./cicd.ps1"` will stop temporarily for you to do this.*  
-> *- When the Powershell script is stopping with action `"confirm"`, type `"y"` (or `"yes"`) if you want to continue the actions sequence. On the contrary, type `"n"` (or `"no"`) to stop right away and exit. (Just in case you detect a fault while you actions sequence is running)*  
+> *- When the Powershell script is stopping with action `"confirm"`, type `"y"` (or `"yes"`) if you want to continue the actions sequence. On the contrary, type `"n"` (or `"no"`) to stop right away and exit. (Just in case you detect a fault while your actions sequence is running)*  
 > *- You can config Jenkins server with these following information:*  
 ![This is an image about lab workflow](./pictures/jenkins-info-config-fixed.png)  
 ![This is an image about lab workflow](./pictures/jenkins-1.jpg)  
 > *- In `"Dashboard > Manage Jenkins > System"`:*  
-![This is an image about lab workflow](./pictures/jenkins-2.jpg)  
+![This is an image about lab workflow](./pictures/jenkins-2.png)  
 ![This is an image about lab workflow](./pictures/jenkins-3.jpg)  
 > *- In `"Dashboard > Nodes > Built-In Node > Configure"`:*  
 ![This is an image about lab workflow](./pictures/jenkins-4.jpg)  
 > *- In `"Dashboard > All" (/view/all/newJob)`:*  
 ![This is an image about lab workflow](./pictures/create-multi-branch-job.jpg)  
 > *- In `"Dashboard > demo-1st-pipeline-multi-branch > Configuration"`:*  
-![This is an image about lab workflow](./pictures/jenkins-5.jpg)  
-![This is an image about lab workflow](./pictures/jenkins-6.jpg)  
+![This is an image about lab workflow](./pictures/jenkins-5.png)  
+![This is an image about lab workflow](./pictures/jenkins-6.png)  
 ![This is an image about lab workflow](./pictures/jenkins-7.jpg)  
 ![This is an image about lab workflow](./pictures/jenkins-8.jpg)  
 > *- You can config Grafana service with these following information:*  
