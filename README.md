@@ -74,12 +74,14 @@ apply git-apply confirm git-master confirm git-push confirm git-dev confirm git-
 > *- You can config Jenkins server with these following information:*  
 ![This is an image about lab workflow](./pictures/jenkins-info-config-fixed.png)  
 ![This is an image about lab workflow](./pictures/jenkins-1.jpg)  
-> *- In `"Dashboard/Manage Jenkins/System"`:*  
+> *- In `"Dashboard > Manage Jenkins > System"`:*  
 ![This is an image about lab workflow](./pictures/jenkins-2.jpg)  
 ![This is an image about lab workflow](./pictures/jenkins-3.jpg)  
-> *- In `"Dashboard/Nodes/Built-In Node/Configure"`:*  
+> *- In `"Dashboard > Nodes > Built-In Node > Configure"`:*  
 ![This is an image about lab workflow](./pictures/jenkins-4.jpg)  
-> *- In `"Dashboard/demo-1st-pipeline-multi-branch/Configuration"`:*  
+> *- In `"Dashboard > All" (/view/all/newJob)`:*  
+![This is an image about lab workflow](./pictures/create-multi-branch-job.jpg)  
+> *- In `"Dashboard > demo-1st-pipeline-multi-branch > Configuration"`:*  
 ![This is an image about lab workflow](./pictures/jenkins-5.jpg)  
 ![This is an image about lab workflow](./pictures/jenkins-6.jpg)  
 ![This is an image about lab workflow](./pictures/jenkins-7.jpg)  
