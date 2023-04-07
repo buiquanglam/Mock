@@ -1,0 +1,38 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build-code-job:
+  stage: build
+  image: docker:19.03-dind
+  services:
+    - docker:dind
+  script:
+    - echo "anhht01101999" | docker login -u "obitanatp" --password-stdin
+    - docker build -t obitanatp/repo:latest .
+    - docker push obitanatp/repo:latest
+
+test:
+  stage: test
+  image: golang
+  script:
+    - go test -v ./...
+
+test2:
+  stage: test
+  script:
+    - echo "testing"
+
+deploy-code-job:
+  stage: deploy
+  image: docker:19.03-dind
+  services:
+    - docker:dind
+  script:
+    - echo "anhht01101999" | docker login -u "obitanatp" --password-stdin
+    - docker-compose up -d
+    - docker-compose pull
+    - docker-compose down
+    - docker-compose up -d
+    - docker-compose run -v $PWD/samples:/scripts k6 run /scripts/test.js

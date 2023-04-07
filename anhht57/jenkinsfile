@@ -1,0 +1,31 @@
+pipeline {
+  agent any
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'docker build -t anhht57/repo:latest .'
+      }
+    }
+    stage('Login') {
+      steps {
+        sh 'echo "anhht01101999" | docker login -u "anhht57" --password-stdin'
+      }
+    }
+    stage('Push') {
+      steps {
+        sh 'docker push anhht57/repo:latest'
+      }
+    }
+  }
+  post {
+    always {
+      sh 'docker logout'
+    }
+  }
+}
