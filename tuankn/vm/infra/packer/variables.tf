@@ -40,7 +40,7 @@ variable "ami_spec" {
   description = "AMI spec"
   default = {
     "instance_type"      = "t3.micro"
-    "ami_desc"           = "Canonical, Ubuntu, 18.04 LTS*"
+    "ami_desc"           = "Canonical, Ubuntu, 20.04 LTS*"
     "ami_owner"          = "099720109477"
     "volume_type"        = "gp2"
     "volume_size"        = "20"

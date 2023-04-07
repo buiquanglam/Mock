@@ -1,9 +1,15 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 2.0"
+    }
+  }
+}
 provider "aws" {
-  version = "~> 2.0"
   region  = var.region
   profile = var.profile
 }
-
 terraform {
   required_version = ">= 0.12.24"
 }
@@ -15,7 +21,7 @@ data "aws_availability_zones" "available" {
 locals {
   timestamp            = formatdate("YYYYMMDD-hhmmss", timestamp())
   number_azs           = length(data.aws_availability_zones.available.names)
-  common_tags          = "packer-ami-${var.build_number}-${local.timestamp}"
+  common_tags          = jsondecode("{\"Owner\": \"packer-ami-${var.build_number}-${local.timestamp}\"}")
   private_keyname_path = "${path.root}/keys/${var.private_keyname}"
 }
 
@@ -28,9 +34,9 @@ resource "tls_private_key" "packer" {
   algorithm = "RSA"
 }
 
-resource "local_file" "packer" {
-  filename          = local.private_keyname_path
-  sensitive_content = tls_private_key.packer.private_key_pem
+resource "local_sensitive_file" "packer" {
+  filename = local.private_keyname_path
+  content  = tls_private_key.packer.private_key_pem
 }
 
 resource "aws_key_pair" "packer" {
