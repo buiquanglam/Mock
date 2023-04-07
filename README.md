@@ -12,11 +12,14 @@
 
 ### 2. Prepare local environment:
 #### *(I'm running this project on Windows 10 / 64-bit os)*
-- Install terraform library by downloading package from this link below:  
+- Install Terraform library by downloading package from this link below:  
 https://developer.hashicorp.com/terraform/downloads
 
-- Install git from this link below and perform configuration for git in local:  
+- Install Git from this link below and perform configuration for git in local:  
 https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+- Install AWS CLI from this link below and perform configuration for remote SSH in local (using `"Remote - SSH"` vscode extension):  
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 - Create a folder with this directoy as below:  
 **`~/.lab/`**  
@@ -32,7 +35,7 @@ git clone 'https://github.com/mnikhoa/demo-1st-pipeline.git'
 ![This is an image about lab workflow](./pictures/dependency-fixed.png)  
 
 > ***NOTE:***  
-*- All `<.dependency_folders/>` are placed in the directory `"~/"`*   
+*- All `<.dependency_folder/dependency_file>` are placed in the directory `"~/"`, not `"~/.lab/demo-1st-pipeline/dependency"`*   
 
 - Open Poweshell in Administrator privilege => run this command below:
 ```ps
