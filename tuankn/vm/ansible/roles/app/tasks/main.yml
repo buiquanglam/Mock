@@ -29,7 +29,7 @@
     - name: make jdk symbolic link
       file: 
         src: '/usr/lib/jvm/zulu-{{ zulu_openjdk_version }}-amd64'
-        dest: {{ JAVA_HOME }}
+        dest: '{{ JAVA_HOME }}'
         state: link
 
 - name: Install tomcat
