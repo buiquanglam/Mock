@@ -127,6 +127,7 @@ resource "aws_security_group" "allow-ssh" {
 resource "local_file" "packer-variables" {
   content = templatefile("${path.root}/variables.json.tpl", {
     region_name        = var.region
+    project_name       = var.project
     vpc_id             = aws_vpc.packer.id
     subnet_id          = aws_subnet.packer.id
     private_key        = local.private_keyname_path

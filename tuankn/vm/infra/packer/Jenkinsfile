@@ -15,7 +15,7 @@ pipeline {
     AWS_SECRET_ACCESS_KEY = credentials('PACKER_AWS_SECRET_KEY')
     WORK_SUB_DIR          = 'vm/infra/packer'
     JENKINS_USER_ID       = 'tuankn'
-//    JENKINS_API_TOKEN     = credentials('JENKIN_API_TOKEN')
+    DESTROY_INFRA      = "${params.DESTROY_INFRA}"
   }
   parameters {
     string(
@@ -44,6 +44,7 @@ pipeline {
       ],
       description: 'packer version'
     )
+    booleanParam(name: 'DESTROY_INFRA', defaultValue: false, description: 'Perform Terraform destroy')
   }
   stages {
     stage("terraform-apply") {
@@ -79,14 +80,27 @@ pipeline {
         '''
       }
     }
+    stage('Terraform Destroy') {
+      steps {
+        sh '''#!/usr/bin/env bash
+          echo "Shell Process ID: $$"
+          cd "${WORK_SUB_DIR}"
+          if [ "${DESTROY_INFRA}" == "true" ] 
+          then
+            bash scripts/post-cleanup.sh
+          else 
+            echo 'Terraform destroy is not performed'
+          fi
+        '''
+      }
+    }
   }
   post {
-    cleanup {
-      sh '''#!/usr/bin/env bash
-        echo "Shell Process ID: $$"
-        cd "${WORK_SUB_DIR}"
-        bash scripts/post-cleanup.sh
-      '''
+    success {
+      echo "SUCCESSFULL"
+    }
+    failure {
+      echo "FAILED"
     }
   }
 }

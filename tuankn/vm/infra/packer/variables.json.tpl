@@ -1,5 +1,6 @@
 ${jsonencode({
     "region_name"            = "${region_name}"
+    "project_name"           = "${project_name}"
     "vpc_id"                 = "${vpc_id}"
     "subnet_id"              = "${subnet_id}"
     "private_key"            = "${private_key}"
