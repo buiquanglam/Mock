@@ -14,4 +14,4 @@
   - name: Entry
     shell: "cd dir"
   - name: Up
-    shell: "docker-compose up -d influxdb grafana"
+    shell: "cd dir/docker-compose up -d influxdb grafana"
