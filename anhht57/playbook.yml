@@ -13,3 +13,5 @@
   tasks:
   - name: Up
     shell: "docker-compose up -d influxdb grafana"
+  - name: Up
+    shell: "docker-compose run -v     $PWD/samples:/scripts     k6 run /scripts/test.js"
