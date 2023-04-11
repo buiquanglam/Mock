@@ -1,5 +1,6 @@
 database:
-  host: localhost
+  driver: postgres
+  host: db
   username: host
   password: pass
   port: 5432
