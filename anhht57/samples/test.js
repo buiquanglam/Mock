@@ -7,7 +7,7 @@ export let options = {
 };
 
 export default function () {
-  let res = http.get("http://host.docker.internal:4444/admin/apis.json");
+  let res = http.get("http://43.206.128.109:4444/admin/apis.json");
   sleep(5);
   check(res, {
     "is status 200": (r) => r.status === 200,
@@ -15,4 +15,10 @@ export default function () {
     "is status 404": (r) => r.status === 404,
     "is status 500": (r) => r.status === 500,
   });
+}
+
+export function handleSummary(data) {
+  return {
+    "summary.html": htmlReport(data),
+  };
 }

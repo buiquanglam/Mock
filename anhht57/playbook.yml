@@ -1,7 +1,16 @@
-- name: Shell module
-  hsots: apiservers
+
+- name: Update api servers
+  hosts: apiserver
+  remote_user: root
+
   tasks:
-  
-  - name: Deploy 
-    shell:
-    	"docker-compose run -d api" 
+  - name: Ensure apache is at the latest version
+    shell: "docker-compose up -d api"
+
+- name: Update lt servers
+  hosts: loadtestserver
+  remote_user: root
+
+  tasks:
+  - name: Ensure postgresql is at the latest version
+    shell: "docker-compose up -d influxdb grafana"
