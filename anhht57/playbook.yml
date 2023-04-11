@@ -4,7 +4,7 @@
 
   tasks:
   - name: Up
-    shell: "docker run -d --name api -p 4444:5444 -p 5444:4444 anhht/repo:latest"
+    shell: "docker run -d --name api -p 4444:5444 -p 5444:4444 anhht57/repo:latest"
 
 - name: Update lt servers
   hosts: loadtestserver
