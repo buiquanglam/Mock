@@ -27,7 +27,7 @@ RUN apt-get update --yes && \
     wget \
     && rm --recursive --force /var/lib/apt/lists/*
 
-RUN pip3 install --update \
+RUN pip3 install --upgrade \
     ansible \
     awscli \
     bashplotlib \
@@ -55,7 +55,7 @@ RUN curl --output "terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip" \
 RUN unzip "terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip" \
   && rm --force "terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip"
 RUN chmod +x terraform
-RUN mv  terraform_ /usr/local/bin
+RUN mv terraform /usr/local/bin
 
 RUN curl --output "packer_${ENV_PACKER_VERSION}_linux_amd64.zip" \
   --silent \

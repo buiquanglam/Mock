@@ -16,6 +16,7 @@ pipeline {
     WORK_SUB_DIR          = 'vm/infra/packer'
     JENKINS_USER_ID       = 'tuankn'
     DESTROY_INFRA      = "${params.DESTROY_INFRA}"
+//    JENKINS_API_TOKEN     = credentials('JENKIN_API_TOKEN')
   }
   parameters {
     string(

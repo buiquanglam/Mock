@@ -126,20 +126,20 @@ resource "aws_security_group" "allow-ssh" {
 
 resource "local_file" "packer-variables" {
   content = templatefile("${path.root}/variables.json.tpl", {
-    region_name        = var.region
-    project_name       = var.project
-    vpc_id             = aws_vpc.packer.id
-    subnet_id          = aws_subnet.packer.id
-    private_key        = local.private_keyname_path
-    public_key         = aws_key_pair.packer.key_name
-    security_group_id  = aws_security_group.allow-ssh.id
-    instance_type      = lookup(var.ami_spec, "instance_type")
-    ami_desc           = lookup(var.ami_spec, "ami_desc")
-    ami_owner          = lookup(var.ami_spec, "ami_owner")
-    volume_type        = lookup(var.ami_spec, "volume_type")
-    volume_size        = lookup(var.ami_spec, "volume_size")
-    packer_remote_user = lookup(var.ami_spec, "packer_remote_user")
-    ansible_dir_path   = var.ansible_dir_path
+    region_name       = var.region
+    project_name      = var.project
+    vpc_id            = aws_vpc.packer.id
+    subnet_id         = aws_subnet.packer.id
+    private_key       = local.private_keyname_path
+    public_key        = aws_key_pair.packer.key_name
+    security_group_id = aws_security_group.allow-ssh.id
+    instance_type     = lookup(var.ami_spec, "instance_type")
+    ami_desc          = lookup(var.ami_spec, "ami_desc")
+    ami_owner         = lookup(var.ami_spec, "ami_owner")
+    volume_type       = lookup(var.ami_spec, "volume_type")
+    volume_size       = lookup(var.ami_spec, "volume_size")
+    remote_user       = lookup(var.ami_spec, "remote_user")
+    ansible_dir_path  = var.ansible_dir_path
     }
   )
 
