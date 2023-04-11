@@ -1,4 +1,3 @@
-
 - name: Update api servers
   hosts: apiserver
   remote_user: ubuntu
