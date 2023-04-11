@@ -55,6 +55,6 @@ func hashPassword(password string) (string, error) {
 }
 
 func GetApis(c *fiber.Ctx) error {
-	return c.JSON(fiber.Map{"status": true, "message": "Thành công", "error": nil})
+	return c.JSON(fiber.Map{"status": true, "message": "TC", "error": nil})
 
 }
