@@ -1,8 +1,8 @@
 version: '3.8'
-# networks:
-#   k6:
-#   grafana:
-#   influxdb:
+networks:
+  k6:
+  grafana:
+  influxdb:
 services:
   api:
     image: obitanatp/repo
@@ -41,7 +41,7 @@ services:
     volumes:
       - ./samples:/scripts  
     environment:
-      - K6_OUT=influxdb=http://172.31.3.78:8086/k6
+      - K6_OUT=influxdb=http://172.31.3.48:8086/k6
 
   influxdb:
     image: influxdb:1.8
