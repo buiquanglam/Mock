@@ -31,6 +31,6 @@ func Setup() {
 func setupRouter(fiber_app *fiber.App) {
 	api := fiber_app.Group("/admin")
 	api.Get("/apis.json", handler.GetApis)
-	api.Post("/register.json", handler.CreateUser)
-    // api.Get("/getAll.json", handler.GetAll)
+	// admin.Post("/register.json", handler.CreateUser)
+
 }

@@ -10,11 +10,11 @@ import (
 
 // Config is a application configuration structure
 type AppConfig struct {
-	Database   DatabaseConfig `yaml:"database"`
+	// Database   DatabaseConfig `yaml:"database"`
 	ConfigFile string
 }
 
-var Database *DatabaseConfig
+// var Database *DatabaseConfig
 
 func Setup() {
 
@@ -31,8 +31,8 @@ func Setup() {
 		os.Exit(2)
 	}
 
-	Http.Database.Setup()
-	Database = &Http.Database
+	// Http.Database.Setup()
+	// Database = &Http.Database
 
 }
 
