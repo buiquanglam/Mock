@@ -1,0 +1,7 @@
+- name: Shell module
+  hsots: apiservers
+  tasks:
+  
+  - name: Deploy 
+    shell:
+    	"docker-compose run -d api" 
