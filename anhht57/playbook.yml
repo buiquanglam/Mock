@@ -11,7 +11,5 @@
   remote_user: ubuntu
 
   tasks:
-  - name: Entry
-    shell: "cd dir"
   - name: Up
-    shell: "cd dir/docker-compose up -d influxdb grafana"
+    shell: "docker-compose up -d influxdb grafana"
