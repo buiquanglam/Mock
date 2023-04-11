@@ -5,7 +5,7 @@ networks:
   influxdb:
 services:
   api:
-    image: obitanatp/repo
+    image: anhht57/repo
     ports:
       - "4444:5444"  
   db:
