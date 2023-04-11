@@ -1,16 +1,20 @@
 
 - name: Update api servers
   hosts: apiserver
-  remote_user: root
+  remote_user: ubuntu
 
   tasks:
-  - name: Ensure apache is at the latest version
+  - name: Up
     shell: "docker-compose up -d api"
 
 - name: Update lt servers
   hosts: loadtestserver
-  remote_user: root
+  remote_user: ubuntu
 
   tasks:
-  - name: Ensure postgresql is at the latest version
+  - name: Entry
+    shell: "cd dir"
+
+  tasks:
+  - name: Up
     shell: "docker-compose up -d influxdb grafana"
