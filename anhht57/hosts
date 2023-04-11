@@ -1,5 +1,5 @@
 [apiserver]
-43.206.128.109
+43.206.128.109 ansible_ssh_private_key_file=mock.pem
 
 [loadtestserver]
-54.250.196.75
+54.250.196.75 ansible_ssh_private_key_file=mock.pem
