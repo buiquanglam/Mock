@@ -4,7 +4,7 @@
 
   tasks:
   - name: Up
-    shell: "docker up -d api"
+    shell: "docker-compose up -d api"
 
 - name: Update lt servers
   hosts: loadtestserver
