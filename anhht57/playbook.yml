@@ -13,7 +13,5 @@
   tasks:
   - name: Entry
     shell: "cd dir"
-
-  tasks:
   - name: Up
     shell: "docker-compose up -d influxdb grafana"
