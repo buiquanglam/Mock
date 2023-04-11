@@ -5,7 +5,8 @@ networks:
   influxdb:
 services:
   api:
-    image: anhht57/repo
+    restart: on-failure
+    image: anhht57/repo:latest
     ports:
       - "4444:5444"  
   db:
